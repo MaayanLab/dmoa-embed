@@ -112,6 +112,23 @@ def load_drug_meta_from_db():
 		d = dict(zip(d['pert_desc'], d[col]))
 		drug_meta_df[col] = [d.get(name, None) for name in drug_meta_df['pert_desc']]
 
+	alis_drugs = [
+		'BRD-K13390322',
+		'BRD-K19220233',
+		'BRD-K21680192',
+		'BRD-K43389698',
+		'BRD-K64800655',
+		'BRD-K72414522',
+		'BRD-K79090631',
+		'BRD-K87909389',
+		'BRD-K88573743',
+		'BRD-K92571446',
+		'BRD-K93788137',
+		'BRD-K99545815',
+		]
+
+	drug_meta_df['Ali'] = drug_meta_df.index.isin(alis_drugs)
+	print drug_meta_df.loc[ drug_meta_df.index.isin(alis_drugs)]
 	return drug_meta_df
 
 def load_drug_synonyms_from_db(meta_df, graph_df):
